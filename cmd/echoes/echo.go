@@ -1,19 +1,29 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
-func (a *App) GetEchoAll(w http.ResponseWriter, r *http.Request) {
-	// get echo
+func (a *App) RenderHomePage(w http.ResponseWriter, r *http.Request) {
+	// filter := r.URL.Query().Get("filter")
+
+	ctx := r.Context()
+	data, err := a.Store.Echoes.GetAll(ctx)
+	if err != nil {
+		log.Printf("failed to get echoes: %v", err)
+		http.Error(w, "failed to get echoes", http.StatusInternalServerError)
+		return
+	}
+
+	t := NewTemplate()
+	t.Render(w, "home", data)
 }
 
-func (a *App) GetEchoAllNewest(w http.ResponseWriter, r *http.Request) {
-	// create echo
+func (a *App) RenderEchoLikePage(w http.ResponseWriter, r *http.Request) {
+	// health check
 }
 
-func (a *App) GetEchoAllOldest(w http.ResponseWriter, r *http.Request) {
-	// update echo
-}
-
-func (a *App) GetEchoAllPopular(w http.ResponseWriter, r *http.Request) {
-	// delete echo
+func (a *App) RenderEchoUnlikePage(w http.ResponseWriter, r *http.Request) {
+	// health check
 }

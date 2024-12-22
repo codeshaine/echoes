@@ -1,0 +1,158 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #ffffff; /* White background for higher contrast */
+  color: #333333; /* Darker text color for readability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 20px;
+  animation: fadeIn 1s ease-in;
+  flex-direction: column; /* Align items vertically */
+}
+
+.container {
+  max-width: 900px; /* Increased width for a more spacious design */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap to the next line if space is not enough */
+  justify-content: center; /* Center the cards horizontally */
+  gap: 30px; /* Adds more space between cards */
+  margin-top: 20px; /* Space above the container */
+}
+
+.card {
+  background: #f0f0f0; /* Light grey background for cards */
+  border-radius: 15px; /* Slightly rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  position: relative;
+  opacity: 0;
+  animation: fadeInCard 1s ease-in forwards;
+  width: calc(50% - 15px); /* Cards will take up half of the container width */
+  max-width: 420px; /* Restrict maximum width */
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  font-size: 1.4rem;
+  color: #333333; /* Darker text for body */
+  line-height: 1.8;
+  margin-bottom: 10px;
+  animation: fadeInText 1s ease-in-out forwards;
+  font-style: italic; /* Add a slightly italic style for quotes */
+}
+
+.card-header {
+  font-size: 0.9rem;
+  color: #ff6f61; /* Bright red tone for headers */
+  text-align: right;
+  margin-bottom: 5px;
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+/* Card Footer - Like Button and Count */
+.card-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  animation: fadeInFooter 1s ease-in-out forwards;
+  font-size: 1rem;
+}
+
+/* Like Button */
+button {
+  background: transparent;
+  border: 1px solid #333333; /* Darker border */
+  border-radius: 50px;
+  padding: 5px 15px;
+  color: #333333; /* Darker text for button */
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  outline: none;
+}
+
+button:hover {
+  background-color: #333333; /* Button hover color */
+  color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3); /* Soft blue shadow on hover */
+  transform: scale(1.1);
+}
+
+/* Like Count */
+.like-count {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ff6f61; /* Bright red color */
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.like-count:hover {
+  color: #333333; /* Darker text color when hovered */
+}
+
+/* Fade-In Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInCard {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFooter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .card {
+    width: calc(100% - 20px); /* Full width for small screens */
+    max-width: none;
+  }
+}

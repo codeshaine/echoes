@@ -1,10 +1,16 @@
 package store
 
-import "database/sql"
+import (
+	"context"
+	"database/sql"
+	"time"
+)
+
+const QueryTimeout = 5 * time.Second
 
 type Storage struct {
 	Echoes interface {
-		GetAll()
+		GetAll(ctx context.Context) (EchoList, error)
 		GetTrending()
 		GetPopular()
 	}

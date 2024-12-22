@@ -1,0 +1,38 @@
+{{define "home"}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/home.css">
+    <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+    <title>Echoes</title>
+</head>
+
+<body>
+    {{range .}}
+    {{template "card" .}}
+    {{end}}
+</body>
+
+</html>
+{{end}}
+
+
+{{block "card" .}}
+<div class="card">
+    <div class="card-body">
+        <p>{{.Data.Echoe}}</p>
+    </div>
+    <div class="card-header">
+        <p>- {{.Data.Author}}</p>
+    </div>
+    <div class="card-footer">
+        <button class="" hx-post="/like/{{.Data.ID}}" hx-swap="outerHTML" hx-target="#likes-{{.Data.ID}}">Like</button>
+        <div class="like-count" id="likes-{{.Data.ID}}">{{.Likes}}</div>
+    </div>
+</div>
+{{end}}
